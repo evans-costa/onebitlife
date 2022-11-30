@@ -1,5 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native-gesture-handler";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import DefaultButton from "../../components/common/DefaultButton";
+import ExplanationCard from "../../components/Explanation/ExplanationCard";
 
 export default function AppExplanation() {
     function handleSetShowHome() {
@@ -15,19 +17,25 @@ export default function AppExplanation() {
                     <Text style={styles.title}>
                         Antes, deixa {'\n'} eu te explicar...
                     </Text>
+
+                    <ExplanationCard />
+
                     <Text style={styles.descriptionCta}>
                         Pronto(a) para subir de nível na vida?
                     </Text>
+
                     <Text style={styles.description}>
                         Na próxima tela você vai poder escolher {'\n'} seus 4 hábitos de forma
                         individual.
                     </Text>
+
                     <DefaultButton
                         buttonText={'Continuar'}
                         handlePress={handleSetShowHome}
                         width={250}
                         height={50}
                     />
+
                 </View>
             </ScrollView>
         </View>
@@ -40,7 +48,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(21, 21, 21, 0.98)'
     },
     title: {
-        fonteSize: 30,
+        fontSize: 30,
         fontWeight: 'bold',
         color: 'white',
         textAlign: 'center',
@@ -58,9 +66,4 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 30,
     },
-
-
-
-
-
 })
