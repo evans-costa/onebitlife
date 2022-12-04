@@ -1,15 +1,17 @@
-import React, { useState, setHabitInput } from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, Alert } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native'
 
 import SelectHabit from "../../components/HabitPage/SelectHabit";
 import SelectFrequency from "../../components/HabitPage/SelectFrequency";
+import Notification from "../../components/HabitPage/Notification";
 
 
-export default function HabitPage( { route }) {
+export default function HabitPage({ route }) {
     const navigation = useNavigation();
     const [habitInput, setHabitInput] = useState()
     const [frequencyInput, setFrequencyInput] = useState()
+    const [notificationToggle, setNotificationToggle] = useState()
 
     const { create, habit } = route.params;
 
@@ -33,12 +35,21 @@ export default function HabitPage( { route }) {
                             <Text style={styles.area}>{habit?.habitArea}</Text>
                         </View>
                         <Text style={styles.inputText}>Hábito</Text>
-                        <SelectHabit habit={habit} habitInput={setHabitInput} />
+                        <SelectHabit 
+                            habit={habit} 
+                            habitInput={setHabitInput} 
+                        />
                         <Text style={styles.inputText}>Frequência</Text>
                         <SelectFrequency
                             habitFrequency={habit?.habitFrequency}
                             frequencyInput={setFrequencyInput}
                         />
+                        {frequencyInput === 'Mensal' ? null : (
+                            <Notification
+                                notificationToggle={notificationToggle}
+                                setNotificationToggle={setNotificationToggle}
+                            />
+                        )}
                     </View>
                 </View>
             </ScrollView>
